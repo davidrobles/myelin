@@ -1,0 +1,7 @@
+name: myelin
+dependencies:
+  - ipython=3.2.3
+  - python=3.5.3
+  - numpy=1.12.1
+  - matplotlib=2.0.0
+  - pandas=0.19.2
