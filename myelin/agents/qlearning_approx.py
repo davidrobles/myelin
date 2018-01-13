@@ -3,10 +3,10 @@ from collections import deque
 
 import numpy as np
 
-from myelin.mixins import EpisodicLearnerMixin
+from myelin.core import Agent
 
 
-class ApproximateQLearning(EpisodicLearnerMixin):
+class ApproximateQLearning(Agent):
     """Q-learning with a function approximator"""
 
     def __init__(self, env, policy, qfunction, discount_factor=1.0, selfplay=False,
@@ -30,22 +30,25 @@ class ApproximateQLearning(EpisodicLearnerMixin):
             func = np.max
         return self.qfunction.best_value(state, self.env.actions(state), func)
 
-    ###########
-    # Learner #
-    ###########
+    #########
+    # Agent #
+    #########
 
-    def episode(self):
-        while not self.env.is_terminal():
-            state = self.env.get_state()
-            action = self.policy.get_action(state)
-            reward, next_state = self.env.do_action(action)
-            if self.experience_replay:
-                experience = (state, action, reward, next_state)
-                self.replay_memory.append(experience)
-                batch_size = min(len(self.replay_memory), self.batch_size)
-                experiences = random.sample(self.replay_memory, batch_size)
-                self.qfunction.minibatch_update(experiences)
-            else:
-                best_qvalue = self.best_qvalue(next_state)
-                update = reward + (self.discount_factor * best_qvalue)
-                self.qfunction.update(state, action, update)
+    def update(self, experience):
+        if self.experience_replay:
+            self.replay_memory.append(experience)
+            batch_size = min(len(self.replay_memory), self.batch_size)
+            experiences = random.sample(self.replay_memory, batch_size)
+            self.qfunction.minibatch_update(experiences)
+        else:
+            state, action, reward, next_state, done = experience
+            best_qvalue = self.best_qvalue(next_state)
+            update = reward + (self.discount_factor * best_qvalue)
+            self.qfunction.update(state, action, update)
+
+    ##########
+    # Policy #
+    ##########
+
+    def get_action(self, state):
+        return self.policy.get_action(state)
