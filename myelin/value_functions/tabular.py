@@ -6,7 +6,7 @@ _STD = 0.3
 
 
 class TabularVF(ValueFunction):
-    '''
+    """
     Tabular Value Function.
     Can be used for both state V(s) and state-action Q(s, a) values.
     # Arguments
@@ -23,7 +23,7 @@ class TabularVF(ValueFunction):
         >>> print(q[state, action])
         1.8
         ```
-    '''
+    """
 
     def __init__(self, init=True, random_state=None):
         self.init = init
@@ -31,12 +31,12 @@ class TabularVF(ValueFunction):
         self._table = {}
 
     def __setitem__(self, key, value):
-        '''
+        """
         Sets the state or state-action value.
         # Arguments
             key: `state` or `(state, action)`.
             value: a scalar.
-        '''
+        """
         self._table[key] = value
 
     #################
@@ -44,13 +44,13 @@ class TabularVF(ValueFunction):
     #################
 
     def __getitem__(self, key):
-        '''
+        """
         Returns the state or state-action value.
         # Arguments
             key: `state` or `(state, action)`.
         # Returns
             a scalar value.
-        '''
+        """
         if key not in self._table:
             if self.init:
                 self._table[key] = self.random_state.normal(_MEAN, _STD)

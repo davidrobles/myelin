@@ -11,7 +11,7 @@ class PolicyIteration():
         self.theta = theta
 
     def prob_target(self, state, action):
-        ''' Find a better name for this '''
+        """Find a better name for this"""
         value = 0
         for next_state, prob in self.mdp.get_transitions(state, action):
             reward = self.mdp.get_reward(state, action, next_state)
@@ -20,7 +20,7 @@ class PolicyIteration():
         return value
 
     def state_value(self, state):
-        ''' Find a better name for this '''
+        """Find a better name for this"""
         value = 0
         for action in self.mdp.get_actions(state):
             action_prob = self.policy.get_action_prob(state, action)
@@ -29,7 +29,7 @@ class PolicyIteration():
         return value
 
     def policy_eval(self):
-        '''Policy evaluation'''
+        """Policy evaluation"""
         delta = 0
         for state in self.mdp.get_states():
             old_value = self.vf[state]
@@ -38,14 +38,14 @@ class PolicyIteration():
         return delta
 
     def iter_policy_eval(self):
-        '''Iterative policy evaluation'''
+        """Iterative policy evaluation"""
         delta = np.inf
         while delta >= self.theta:
             delta = self.policy_eval()
             print('Delta: {:.5f}'.format(delta))
 
     def policy_improvement(self):
-        '''Policy improvement'''
+        """Policy improvement"""
         print('Policy improvement...')
         policy_stable = True
         self.policy.vf = {}
