@@ -33,7 +33,7 @@ class MDP(metaclass=ABCMeta):
         Returns a dict of (next_state: probability) key/values, where
         'next_state' is reachable from 'state' by taking 'action'. The sum of
         all probabilities should be 1.0.
-        Note that in Q-Learning and reinforcment learning in general, we do
+        Note that in Q-Learning and reinforcement learning in general, we do
         not know these probabilities nor do we directly model them.
         """
 
