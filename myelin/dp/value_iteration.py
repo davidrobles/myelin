@@ -1,4 +1,4 @@
-class ValueIteration():
+class ValueIteration:
     """Value Iteration"""
 
     def __init__(self, mdp, theta, gamma, vfunction):
