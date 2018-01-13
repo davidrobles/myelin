@@ -12,19 +12,3 @@ class Policy(metaclass=ABCMeta):
         """
         Returns one of the available actions from the given state.
         """
-        pass
-
-    @abstractmethod
-    def get_action_prob(self, state, action):
-        """
-        Returns the probability of taking action in state.
-        """
-        pass
-
-    @abstractmethod
-    def get_action_probs(self, state):
-        """
-        Returns the probability of taking action in state.
-        """
-        actions = self.action_space(state)
-        pass
