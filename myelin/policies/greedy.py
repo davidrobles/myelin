@@ -2,6 +2,7 @@ from myelin.core import Policy
 
 
 class Greedy(Policy):
+    """Greedy Policy"""
 
     def __init__(self, action_space, vfunction=None, qfunction=None, selfplay=False):
         if vfunction is None and qfunction is None:

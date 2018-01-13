@@ -1,15 +1,15 @@
 import numpy as np
 from myelin.core import MDP
 
-
-STAY  = ( 0,  0)
-NORTH = (-1,  0)
-EAST  = ( 0,  1)
-SOUTH = ( 1,  0)
-WEST  = ( 0, -1)
+STAY = (0, 0)
+NORTH = (-1, 0)
+EAST = (0, 1)
+SOUTH = (1, 0)
+WEST = (0, -1)
 
 
 class GridWorld(MDP):
+    """Grid World"""
 
     def __init__(self, rows, cols):
         self.rows = rows
@@ -18,7 +18,7 @@ class GridWorld(MDP):
 
     def __str__(self):
         return ('<GridWorld n_rows={} n_cols={} terminal_state={}>'
-                .format(self.rows, self.cols, self.terminal_state))
+            .format(self.rows, self.cols, self.terminal_state))
 
     def is_state_illegal(self, state):
         return state[0] < 0 or state[0] == self.rows or state[1] < 0 or state[1] == self.cols

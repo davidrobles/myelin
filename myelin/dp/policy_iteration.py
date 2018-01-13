@@ -2,6 +2,7 @@ import numpy as np
 
 
 class PolicyIteration():
+    """Policy Iteration"""
 
     def __init__(self, mdp, gamma, policy, vf, theta):
         self.mdp = mdp
@@ -61,6 +62,5 @@ class PolicyIteration():
                     best_value = value
                     best_action = action
             self.policy.vf[state] = best_action
-
 
 # TODO: there can be multiple best actions

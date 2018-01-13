@@ -4,9 +4,9 @@ import numpy as np
 from myelin.dp import ValueIteration
 from myelin.mdps.gridworld import GridWorld
 
-rows, cols = 44, 44
-mdp = GridWorld(rows, cols)
-vfunction = np.zeros((rows, cols))
+ROWS, COLS = 44, 44
+mdp = GridWorld(ROWS, COLS)
+vfunction = np.zeros((ROWS, COLS))
 # vi = ValueIteration(mdp, 0.001, 0.99, vfunction)
 vi = ValueIteration(mdp, 0.001, 1, vfunction)
 vi.learn()

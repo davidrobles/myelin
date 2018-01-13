@@ -1,4 +1,5 @@
 class ValueIteration():
+    """Value Iteration"""
 
     def __init__(self, mdp, theta, gamma, vfunction):
         self.mdp = mdp
