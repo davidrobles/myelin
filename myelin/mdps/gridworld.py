@@ -24,7 +24,7 @@ class GridWorld(MDP):
         return state[0] < 0 or state[0] == self.rows or state[1] < 0 or state[1] == self.cols
 
     def rand_cell(self):
-        return (np.random.randint(self.rows), np.random.randint(self.cols))
+        return np.random.randint(self.rows), np.random.randint(self.cols)
 
     #######
     # MDP #
