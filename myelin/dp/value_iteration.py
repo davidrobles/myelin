@@ -1,5 +1,8 @@
 class ValueIteration:
-    """Value Iteration"""
+    """
+    Value iteration (Bellman 1957), also called backward induction, is an algorithm that computes the values for all
+    the states in the markov decision process. In value iteration no policy is used.
+    """
 
     def __init__(self, mdp, theta, gamma, vfunction):
         self.mdp = mdp
