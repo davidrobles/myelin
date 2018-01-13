@@ -1,7 +1,8 @@
-import numpy as np
 import matplotlib.pyplot as plt
-from myelin.mdps.gridworld import GridWorld, ValueIteration
+import numpy as np
 
+from myelin.dp import ValueIteration
+from myelin.mdps.gridworld import GridWorld
 
 rows, cols = 44, 44
 mdp = GridWorld(rows, cols)

@@ -1,5 +1,6 @@
 from myelin.core import Policy
-from myelin.policies import Greedy, RandomPolicy
+from myelin.policies.greedy import Greedy
+from myelin.policies.random_policy import RandomPolicy
 from myelin.utils import check_random_state
 
 

@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from myelin.mdps.gridworld import GridWorld
 from myelin.dp import PolicyIteration
-from myelin.policies.random_policy import RandomPolicy
+from myelin.policies import RandomPolicy
 
 gamma = 1.0
 theta = 0.1
