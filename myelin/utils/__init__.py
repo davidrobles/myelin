@@ -1,3 +1,5 @@
+from collections import namedtuple
+
 import numpy as np
 
 
@@ -19,3 +21,6 @@ def min_qvalue(state, actions, qf):
     if not actions or actions[0] is None:
         return 0
     return min([qf[state, action] for action in actions])
+
+
+Experience = namedtuple('Experience', ['state', 'action', 'reward', 'next_state', 'done'])
