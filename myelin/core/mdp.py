@@ -7,7 +7,6 @@ class MDP(metaclass=ABCMeta):
     @abstractmethod
     def get_actions(self, state):
         """Returns a list of possible actions in the given state."""
-        pass
 
     @abstractmethod
     def get_reward(self, state, action, next_state):
@@ -16,12 +15,10 @@ class MDP(metaclass=ABCMeta):
         in 'next_state'.
         Not available in reinforcement learning.
         """
-        pass
 
     @abstractmethod
     def get_start_state(self):
         """Returns the initial state."""
-        pass
 
     @abstractmethod
     def get_states(self):
@@ -29,7 +26,6 @@ class MDP(metaclass=ABCMeta):
         Returns a list of all states.
         Not generally possible for large MDPs.
         """
-        pass
 
     @abstractmethod
     def get_transitions(self, state, action):
@@ -40,7 +36,6 @@ class MDP(metaclass=ABCMeta):
         Note that in Q-Learning and reinforcment learning in general, we do
         not know these probabilities nor do we directly model them.
         """
-        pass
 
     @abstractmethod
     def is_terminal(self, state):
@@ -51,12 +46,10 @@ class MDP(metaclass=ABCMeta):
         as having a self-loop action 'pass' with zero reward; the formulations
         are equivalent.
         """
-        pass
 
 
 class MarkovGame(metaclass=ABCMeta):
     """Markov Game"""
-    pass
 
 
 class AlternatingMarkovGame(metaclass=ABCMeta):
