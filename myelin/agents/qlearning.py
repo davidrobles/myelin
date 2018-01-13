@@ -6,7 +6,7 @@ class QLearning(Agent):
     Tabular Q-learning.
 
     # Arguments
-        env: environment.
+        action_space: action space of the environment.
         policy: behavior policy.
         qfunction: a state-action value function.
         learning_rate: float >= 0.
