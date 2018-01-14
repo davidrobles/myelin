@@ -13,7 +13,7 @@ class EpisodicInteraction:
         for episode in range(n_episodes):
             # callbacks.on_episode_begin(episode)
             # self.env.reset()
-            print('Episode {}'.format(episode))
+            # print('Episode {}'.format(episode))
             self.episode()
             # callbacks.on_episode_end(episode)
         # callbacks.on_train_end()
