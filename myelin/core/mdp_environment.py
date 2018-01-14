@@ -6,7 +6,7 @@ class MDPEnvironment(Environment):
 
     def __init__(self, mdp):
         self._mdp = mdp
-        self._cur_state = self._mdp.start_state()
+        self._cur_state = self._mdp.get_start_state()
 
     def is_terminal(self):
         return self._mdp.is_terminal(self.get_state())
@@ -25,7 +25,7 @@ class MDPEnvironment(Environment):
 
     def get_state(self):
         """Returns the current state."""
-        return self._cur_state.copy()
+        return self._cur_state
 
     def do_action(self, action):
         """
@@ -33,12 +33,12 @@ class MDPEnvironment(Environment):
         Returns (reward, next_state).
         """
         prev = self.get_state()
-        transitions = self._mdp.transitions(self.get_state(), action)
+        transitions = self._mdp.get_transitions(self.get_state(), action)
         for next_state, prob in transitions:
             self._cur_state = next_state
-        reward = self._mdp.reward(prev, action, self.get_state())
+        reward = self._mdp.get_reward(prev, action, self.get_state())
         return reward, self.get_state()
 
     def reset(self):
         """Resets the current state to the start state."""
-        self._cur_state = self._mdp.start_state()
+        self._cur_state = self._mdp.get_start_state()
