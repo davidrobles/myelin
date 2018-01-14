@@ -1,5 +1,3 @@
-from abc import abstractmethod
-
 from myelin.core.environment import Environment
 
 
@@ -10,21 +8,25 @@ class MDPEnvironment(Environment):
         self._mdp = mdp
         self._cur_state = self._mdp.start_state()
 
+    def is_terminal(self):
+        return self._mdp.is_terminal(self.get_state())
+
     @property
     def action_space(self):
         return self._mdp.get_actions
 
-    @abstractmethod
+    ###############
+    # Environment #
+    ###############
+
     def get_actions(self, state):
         """Returns the available actions in the given state."""
         return self._mdp.actions(state)
 
-    @abstractmethod
     def get_state(self):
         """Returns the current state."""
         return self._cur_state.copy()
 
-    @abstractmethod
     def do_action(self, action):
         """
         Performs the given action in the current state.
@@ -37,10 +39,6 @@ class MDPEnvironment(Environment):
         reward = self._mdp.reward(prev, action, self.get_state())
         return reward, self.get_state()
 
-    def is_terminal(self):
-        return self._mdp.is_terminal(self.get_state())
-
-    @abstractmethod
     def reset(self):
         """Resets the current state to the start state."""
         self._cur_state = self._mdp.start_state()
