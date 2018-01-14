@@ -1,4 +1,4 @@
-class CallbackList(object):
+class CallbackList:
     """Container abstracting a list of callbacks (inspired by Keras)."""
 
     def __init__(self, callbacks=None):
@@ -25,7 +25,7 @@ class CallbackList(object):
             callback.on_train_end(qf)
 
 
-class Callback(object):
+class Callback:
     """Abstract base class used to build new callbacks (inspired by Keras)."""
 
     def on_episode_begin(self, episode, qf):

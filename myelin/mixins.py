@@ -1,7 +1,7 @@
 from myelin.utils.callbacks import CallbackList
 
 
-class EpisodicLearnerMixin(object):
+class EpisodicLearnerMixin:
     """
     Mixin for learning value functions by interacting with an
     environment in an episodic setting.

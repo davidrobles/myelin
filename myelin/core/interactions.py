@@ -4,7 +4,7 @@ from myelin.utils import Experience
 from myelin.utils.callbacks import CallbackList
 
 
-class EpisodicInteraction(object):
+class EpisodicInteraction:
 
     def train(self, n_episodes, callbacks=None):
         """Trains the model for a fixed number of episodes."""
