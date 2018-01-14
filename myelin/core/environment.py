@@ -23,8 +23,9 @@ class Environment:
         Returns (reward, next_state).
         """
 
+    @abc.abstractmethod
     def is_terminal(self):
-        return self._mdp.is_terminal(self.get_state())
+        """Returns True if the current state is terminal"""
 
     @abc.abstractmethod
     def reset(self):
