@@ -2,6 +2,10 @@
 
 A Python Framework for Reinforcement Learning.
 
+## Examples
+
+- [Grid World TD0](https://github.com/davidrobles/myelin/blob/master/examples/grid_world_td0.ipynb)
+
 ## Why the name Myelin?
 
 Neuroscience research has shown that brain circuits that get used extensively are **reinforced** by growing
