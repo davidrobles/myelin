@@ -4,3 +4,4 @@ __pycache__/
 *$py.class
 experiments/
 .idea/
+.ipynb_checkpoints/
