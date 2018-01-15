@@ -2,6 +2,8 @@ from collections import namedtuple
 
 import numpy as np
 
+from myelin.utils.callbacks import Callback, CallbackList
+
 
 def check_random_state(seed):
     if seed is None or isinstance(seed, int):

@@ -1,5 +1,4 @@
-from myelin.utils import Experience
-from myelin.utils.callbacks import CallbackList
+from myelin.utils import CallbackList, Experience
 
 
 class RLInteraction:
