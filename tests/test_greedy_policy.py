@@ -14,12 +14,12 @@ class TestGreedy(unittest.TestCase):
             return actions[state]
 
         self.qfunction = TabularVF()
-        self.qfunction[('north', 1)] = 5
-        self.qfunction[('north', 4)] = 23
-        self.qfunction[('north', 5)] = 73
-        self.qfunction[('north', 8)] = 33
-        self.qfunction[('south', 2)] = 2
-        self.qfunction[('south', 3)] = 45
+        self.qfunction['north', 1] = 5
+        self.qfunction['north', 4] = 23
+        self.qfunction['north', 5] = 73
+        self.qfunction['north', 8] = 33
+        self.qfunction['south', 2] = 2
+        self.qfunction['south', 3] = 45
         self.policy = Greedy(action_space, self.qfunction)
 
     def test_max_action(self):
