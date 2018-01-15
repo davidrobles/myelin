@@ -19,10 +19,10 @@ class CallbackList:
         for callback in self.callbacks:
             callback.on_train_begin()
 
-    def on_train_end(self):
+    def on_train_end(self, episode):
         """Called at the end of model training."""
         for callback in self.callbacks:
-            callback.on_train_end()
+            callback.on_train_end(episode)
 
 
 class Callback:
@@ -35,7 +35,7 @@ class Callback:
         """Called at the end of every episode."""
 
     def on_train_begin(self):
-        """Called at the beginning of model training."""
+        """Called at the beginning of the agent-environment interaction."""
 
-    def on_train_end(self):
-        """Called at the end of model training."""
+    def on_train_end(self, episode):
+        """Called at the end of the agent-environment interaction."""

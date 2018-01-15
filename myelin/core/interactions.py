@@ -17,7 +17,7 @@ class RLInteraction:
             callbacks.on_episode_begin(episode)
             self.episode()
             callbacks.on_episode_end(episode)
-        callbacks.on_train_end()
+        callbacks.on_train_end(n_episodes)
 
     def episode(self):
         self.env.reset()
