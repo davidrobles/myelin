@@ -21,7 +21,7 @@ class MDPEnvironment(Environment):
 
     def get_actions(self, state):
         """Returns the available actions in the given state."""
-        return self._mdp.actions(state)
+        return self._mdp.get_actions(state)
 
     def get_state(self):
         """Returns the current state."""
