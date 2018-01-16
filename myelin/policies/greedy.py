@@ -6,7 +6,7 @@ class Greedy(Policy):
 
     def __init__(self, action_space, qfunction):
         if qfunction is None:
-            raise ValueError('Requires either a Q-function')
+            raise ValueError('Requires a Q-function')
         self.action_space = action_space
         self.qfunction = qfunction
 
@@ -15,5 +15,5 @@ class Greedy(Policy):
         if not actions:
             raise ValueError('Must have at least one available action.')
         state_actions = [(state, action) for action in actions]
-        _, best_action = max(state_actions, key=lambda s_or_sa: self.qfunction[s_or_sa])
+        _, best_action = max(state_actions, key=lambda state_action: self.qfunction[state_action])
         return best_action
