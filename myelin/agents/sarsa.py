@@ -28,7 +28,7 @@ class SARSA(Agent):
         if done:
             target = reward
         else:
-            next_action = self.policy.action(next_state)
+            next_action = self.policy.get_action(next_state)
             target = reward + (self.discount_factor * self.qfunction[next_state, next_action])
         td_error = target - self.qfunction[state, action]
         self.qfunction[state, action] += self.learning_rate * td_error
