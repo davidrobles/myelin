@@ -7,7 +7,7 @@ A Python Framework for Reinforcement Learning.
 - [Grid World - TD0](https://github.com/davidrobles/myelin/blob/master/examples/grid_world_td0.ipynb)
 - [Grid World - QLearning](https://github.com/davidrobles/myelin/blob/master/examples/grid_world_qlearning.ipynb)
 - [Grid World - SARSA](https://github.com/davidrobles/myelin/blob/master/examples/grid_world_sarsa.ipynb)
-- [Grid World - First-Visit Monte Carlo](https://github.com/davidrobles/myelin/blob/master/examples/grid_world_monte_carlo.ipynb)
+- [Grid World - First-Visit Monte Carlo](https://github.com/davidrobles/myelin/blob/master/examples/grid_world_first_visit_monte_carlo.ipynb)
 
 ## Why the name Myelin?
 
