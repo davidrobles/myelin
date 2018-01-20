@@ -8,4 +8,4 @@ class Agent(Policy):
 
     @abstractmethod
     def update(self, experience):
-        """An experience is a tuple (state, action, reward, next_state)"""
+        """An experience is a tuple (state, action, reward, next_state, done)"""
