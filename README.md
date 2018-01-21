@@ -2,6 +2,14 @@
 
 A Python Framework for Reinforcement Learning.
 
+## Agents
+
+- [TD0](https://github.com/davidrobles/myelin/blob/master/myelin/agents/td0.py)
+- [Q-learning](https://github.com/davidrobles/myelin/blob/master/myelin/agents/qlearning.py)
+- [SARSA](https://github.com/davidrobles/myelin/blob/master/myelin/agents/sarsa.py)
+- [First-visit Monte Carlo](https://github.com/davidrobles/myelin/blob/master/myelin/agents/first_visit_mc.py)
+- [Every-visit Monte Carlo](https://github.com/davidrobles/myelin/blob/master/myelin/agents/every_visit_mc.py)
+
 ## Examples
 
 - [Grid World - TD0](https://github.com/davidrobles/myelin/blob/master/examples/grid_world_td0.ipynb)
