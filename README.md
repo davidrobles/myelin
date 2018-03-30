@@ -25,3 +25,15 @@ a **myelin** sheath around them – the myelin provides insulation for those neu
 the speed at which those neural pathways fire. In other words, as we repeat and get better at an
 activity, there is a physiological change that speeds up the signals in our brain so that we can do it
 faster.
+
+##
+
+### 1. Create a conda environment
+```bash
+conda env create -f environment.yml
+```
+
+### 2. Activate environment
+```bash
+source activate myelin
+```
