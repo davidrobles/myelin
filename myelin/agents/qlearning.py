@@ -14,8 +14,8 @@ class QLearning(Agent):
     """
 
     def __init__(self, action_space, policy, qfunction, learning_rate=0.1, discount_factor=1.0, max_value=True):
+        super().__init__(policy)
         self.action_space = action_space
-        self.policy = policy
         self.qfunction = qfunction
         self.learning_rate = learning_rate
         self.discount_factor = discount_factor
@@ -37,10 +37,3 @@ class QLearning(Agent):
             target = reward + (self.discount_factor * best_q_value)
         td_error = target - self.qfunction[state, action]
         self.qfunction[state, action] += self.learning_rate * td_error
-
-    ##########
-    # Policy #
-    ##########
-
-    def get_action(self, state):
-        return self.policy.get_action(state)

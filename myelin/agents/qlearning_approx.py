@@ -11,6 +11,7 @@ class ApproximateQLearning(Agent):
 
     def __init__(self, env, policy, qfunction, discount_factor=1.0, selfplay=False,
                  experience_replay=True, batch_size=32, replay_memory_size=10000):
+        super().__init__(policy)
         self.env = env
         self.policy = policy
         self.qfunction = qfunction
@@ -45,10 +46,3 @@ class ApproximateQLearning(Agent):
             best_qvalue = self.best_qvalue(next_state)
             update = reward + (self.discount_factor * best_qvalue)
             self.qfunction.update(state, action, update)
-
-    ##########
-    # Policy #
-    ##########
-
-    def get_action(self, state):
-        return self.policy.get_action(state)

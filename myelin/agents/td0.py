@@ -14,6 +14,7 @@ class TabularTD0(Agent):
     """
 
     def __init__(self, action_space, policy, vfunction, learning_rate=0.1, discount_factor=1.0, max_value=True):
+        super().__init__(policy)
         self.action_space = action_space
         self.policy = policy
         self.vfunction = vfunction
@@ -34,10 +35,3 @@ class TabularTD0(Agent):
             target = reward + (self.discount_factor * self.vfunction[next_state])
         td_error = target - self.vfunction[state]
         self.vfunction[state] += self.learning_rate * td_error
-
-    ##########
-    # Policy #
-    ##########
-
-    def get_action(self, state):
-        return self.policy.get_action(state)

@@ -16,8 +16,8 @@ class FirstVisitMonteCarlo(Agent):
     """
 
     def __init__(self, action_space, policy, vfunction):
+        super().__init__(policy)
         self.action_space = action_space
-        self.policy = policy
         self.vfunction = vfunction
         self.visited = []
         self.rewards = []
@@ -43,10 +43,3 @@ class FirstVisitMonteCarlo(Agent):
                 self.returns[s].append(return_)
                 self.vfunction[s] = np.mean(np.array(self.returns[s]))
             self.reset()
-
-    ##########
-    # Policy #
-    ##########
-
-    def get_action(self, state):
-        return self.policy.get_action(state)

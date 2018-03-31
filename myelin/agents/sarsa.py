@@ -13,6 +13,7 @@ class SARSA(Agent):
     """
 
     def __init__(self, policy, qfunction, learning_rate=0.1, discount_factor=1.0):
+        super().__init__(policy)
         self.policy = policy
         self.qfunction = qfunction
         self.learning_rate = learning_rate
@@ -32,13 +33,3 @@ class SARSA(Agent):
             target = reward + (self.discount_factor * self.qfunction[next_state, next_action])
         td_error = target - self.qfunction[state, action]
         self.qfunction[state, action] += self.learning_rate * td_error
-
-    ##########
-    # Policy #
-    ##########
-
-    def get_action(self, state):
-        return self.policy.get_action(state)
-
-    def get_action_prob(self, state, action):
-        return self.policy.get_action_prob(state, action)
