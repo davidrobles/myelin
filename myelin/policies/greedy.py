@@ -24,6 +24,8 @@ class Greedy(Policy):
 
     def get_action_prob(self, state, action):
         actions = self.action_space(state)
+        if action not in actions:
+            raise ValueError('Invalid action')
         state_actions = [(state, action) for action in actions]
         _, best_action = max(state_actions, key=lambda state_action: self.qfunction[state_action])
         return 1 if best_action == action else 0
