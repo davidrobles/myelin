@@ -7,6 +7,7 @@ A Python Framework for Reinforcement Learning.
 - [TD0](https://github.com/davidrobles/myelin/blob/master/myelin/agents/td0.py)
 - [Q-learning](https://github.com/davidrobles/myelin/blob/master/myelin/agents/qlearning.py)
 - [SARSA](https://github.com/davidrobles/myelin/blob/master/myelin/agents/sarsa.py)
+- [ExpectedSARSA](https://github.com/davidrobles/myelin/blob/master/myelin/agents/expected_sarsa.py)
 - [First-visit Monte Carlo](https://github.com/davidrobles/myelin/blob/master/myelin/agents/first_visit_mc.py)
 - [Every-visit Monte Carlo](https://github.com/davidrobles/myelin/blob/master/myelin/agents/every_visit_mc.py)
 
@@ -15,6 +16,7 @@ A Python Framework for Reinforcement Learning.
 - [Grid World - TD0](https://github.com/davidrobles/myelin/blob/master/examples/grid_world_td0.ipynb)
 - [Grid World - QLearning](https://github.com/davidrobles/myelin/blob/master/examples/grid_world_qlearning.ipynb)
 - [Grid World - SARSA](https://github.com/davidrobles/myelin/blob/master/examples/grid_world_sarsa.ipynb)
+- [Grid World - ExpectedSARSA](https://github.com/davidrobles/myelin/blob/master/examples/grid_world_expected_sarsa.ipynb)
 - [Grid World - First-Visit Monte Carlo](https://github.com/davidrobles/myelin/blob/master/examples/grid_world_first_visit_monte_carlo.ipynb)
 - [Grid World - Every-Visit Monte Carlo](https://github.com/davidrobles/myelin/blob/master/examples/grid_world_every_visit_monte_carlo.ipynb)
 
