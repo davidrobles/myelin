@@ -13,6 +13,10 @@ class Agent(Policy):
     def update(self, experience):
         """An experience is a tuple (state, action, reward, next_state, done)"""
 
+    ##########
+    # Policy #
+    ##########
+
     def get_action(self, state):
         return self.policy.get_action(state)
 
