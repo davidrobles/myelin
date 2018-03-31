@@ -28,6 +28,12 @@ class TestGreedy(unittest.TestCase):
         action = self.policy.get_action('south')
         self.assertEqual(action, 3)
 
+    def test_get_action_prob(self):
+        self.assertEqual(self.policy.get_action_prob('north', 1), 0)
+        self.assertEqual(self.policy.get_action_prob('north', 4), 0)
+        self.assertEqual(self.policy.get_action_prob('north', 5), 1)
+        self.assertEqual(self.policy.get_action_prob('north', 8), 0)
+
     # def test_raises_value_error_if_no_actions_available(self):
     #     state = 1
     #     actions = []
