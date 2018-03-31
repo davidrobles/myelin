@@ -26,7 +26,7 @@ the speed at which those neural pathways fire. In other words, as we repeat and 
 activity, there is a physiological change that speeds up the signals in our brain so that we can do it
 faster.
 
-##
+## Commands
 
 ### Conda activate
 
