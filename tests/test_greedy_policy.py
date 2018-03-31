@@ -4,7 +4,7 @@ from myelin.policies import Greedy
 from myelin.value_functions.tabular import TabularVF
 
 
-class TestGreedy(unittest.TestCase):
+class TestGreedyPolicy(unittest.TestCase):
     def setUp(self):
         def action_space(state):
             actions = {
@@ -22,13 +22,11 @@ class TestGreedy(unittest.TestCase):
         self.qfunction['south', 3] = 45
         self.policy = Greedy(action_space, self.qfunction)
 
-    def test_max_action(self):
-        action = self.policy.get_action('north')
-        self.assertEqual(action, 5)
-        action = self.policy.get_action('south')
-        self.assertEqual(action, 3)
+    def test_get_action_returns_best_action(self):
+        self.assertEqual(self.policy.get_action('north'), 5)
+        self.assertEqual(self.policy.get_action('south'), 3)
 
-    def test_get_action_prob(self):
+    def test_get_action_prob_returns_correct_probabilities(self):
         self.assertEqual(self.policy.get_action_prob('north', 1), 0)
         self.assertEqual(self.policy.get_action_prob('north', 4), 0)
         self.assertEqual(self.policy.get_action_prob('north', 5), 1)
