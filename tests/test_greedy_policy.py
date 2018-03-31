@@ -39,9 +39,3 @@ class TestGreedyPolicy(unittest.TestCase):
     def test_get_action_prob_raises_exception_if_invalid_action(self):
         with self.assertRaises(ValueError):
             self.policy.get_action_prob('north', 'invalid_action')
-
-    # def test_raises_value_error_if_no_actions_available(self):
-    #     state = 1
-    #     actions = []
-    #     with self.assertRaises(ValueError):
-    #         self.policy.get_action(state, actions)
