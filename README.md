@@ -28,12 +28,24 @@ faster.
 
 ##
 
-### 1. Create a conda environment
+### Conda activate
+
+```bash
+conda activate
+```
+
+### Create a conda environment
 ```bash
 conda env create -f environment.yml
 ```
 
-### 2. Activate environment
+### Activate environment
 ```bash
 source activate myelin
+```
+
+### Deactivate environment
+
+```bash
+source deactivate
 ```
