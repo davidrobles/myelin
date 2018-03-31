@@ -8,7 +8,7 @@ class Greedy(Policy):
         if qfunction is None:
             raise ValueError('Requires a Q-function')
         self.action_space = action_space
-        self.qfunction = qfunction
+        self.qfunc = qfunction
 
     ##########
     # Policy #
@@ -19,7 +19,7 @@ class Greedy(Policy):
         if not actions:
             raise ValueError('Must have at least one available action.')
         state_actions = [(state, action) for action in actions]
-        _, best_action = max(state_actions, key=lambda state_action: self.qfunction[state_action])
+        _, best_action = max(state_actions, key=lambda state_action: self.qfunc[state_action])
         return best_action
 
     def get_action_prob(self, state, action):
@@ -27,5 +27,8 @@ class Greedy(Policy):
         if action not in actions:
             raise ValueError('Invalid action')
         state_actions = [(state, action) for action in actions]
-        _, best_action = max(state_actions, key=lambda state_action: self.qfunction[state_action])
-        return 1 if best_action == action else 0
+        _, best_action = max(state_actions, key=lambda state_action: self.qfunc[state_action])
+        best_actions = [action for state, action in state_actions if self.qfunc[(state, action)] == self.qfunc[(state, best_action)]]
+        if action not in best_actions:
+            return 0
+        return 1 / len(best_actions)
