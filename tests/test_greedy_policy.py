@@ -31,6 +31,8 @@ class TestGreedyPolicy(unittest.TestCase):
         self.assertEqual(self.policy.get_action_prob('north', 4), 0)
         self.assertEqual(self.policy.get_action_prob('north', 5), 1)
         self.assertEqual(self.policy.get_action_prob('north', 8), 0)
+        self.assertEqual(self.policy.get_action_prob('south', 2), 0)
+        self.assertEqual(self.policy.get_action_prob('south', 3), 1)
 
     def test_get_action_prob_raises_exception_if_invalid_action(self):
         with self.assertRaises(ValueError):
