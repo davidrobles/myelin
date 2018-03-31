@@ -49,3 +49,11 @@ source activate myelin
 ```bash
 source deactivate
 ```
+
+### Run Jupyter Notebooks
+
+```bash
+conda activate
+source activate myelin
+jupyter notebook
+```
