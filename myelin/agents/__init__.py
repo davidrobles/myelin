@@ -1,4 +1,5 @@
 from .every_visit_mc import EveryVisitMonteCarlo
+from .expected_sarsa import ExpectedSARSA
 from .first_visit_mc import FirstVisitMonteCarlo
 from .qlearning import QLearning
 from .qlearning_approx import ApproximateQLearning
