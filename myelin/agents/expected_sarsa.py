@@ -1,6 +1,14 @@
 from myelin.core import Agent
 
 
+def action_expected_value(state, action, policy, qf):
+    return policy.get_action_prob(state, action) * qf[state, action]
+
+
+def state_expected_value(state, actions, policy, qf):
+    return sum([action_expected_value(state, action, policy, qf) for action in actions])
+
+
 class ExpectedSARSA(Agent):
     """
     Expected SARSA.
@@ -29,11 +37,7 @@ class ExpectedSARSA(Agent):
             target = reward
         else:
             next_actions = self.action_space(next_state)
-            s = 0
-            for next_action in next_actions:
-                action_prob = self.policy.get_action_prob(next_state, next_action)
-                next_value = self.qfunction[next_state, next_action]
-                s += action_prob * next_value
-            target = reward + (self.discount_factor * s)
+            expected_value = state_expected_value(next_state, next_actions, self.policy, self.qfunction)
+            target = reward + (self.discount_factor * expected_value)
         td_error = target - self.qfunction[state, action]
         self.qfunction[state, action] += self.learning_rate * td_error
