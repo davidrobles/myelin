@@ -8,6 +8,7 @@ class Agent(Policy):
 
     def __init__(self, policy):
         self.policy = policy
+        self.action_space = policy.action_space
 
     @abstractmethod
     def update(self, experience):

@@ -20,9 +20,8 @@ class ExpectedSARSA(Agent):
         discount_factor: float >= 0.
     """
 
-    def __init__(self, action_space, policy, qfunction, learning_rate=0.1, discount_factor=1.0):
+    def __init__(self, policy, qfunction, learning_rate=0.1, discount_factor=1.0):
         super().__init__(policy)
-        self.action_space = action_space
         self.qfunction = qfunction
         self.learning_rate = learning_rate
         self.discount_factor = discount_factor

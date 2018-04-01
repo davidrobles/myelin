@@ -6,17 +6,14 @@ class TabularTD0(Agent):
     Tabular TD0.
 
     # Arguments
-        action_space: action space of the environment.
         policy: behavior policy.
         vfunction: a state value function.
         learning_rate: float >= 0.
         discount_factor: float >= 0.
     """
 
-    def __init__(self, action_space, policy, vfunction, learning_rate=0.1, discount_factor=1.0, max_value=True):
+    def __init__(self, policy, vfunction, learning_rate=0.1, discount_factor=1.0, max_value=True):
         super().__init__(policy)
-        self.action_space = action_space
-        self.policy = policy
         self.vfunction = vfunction
         self.learning_rate = learning_rate
         self.discount_factor = discount_factor

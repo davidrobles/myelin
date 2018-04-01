@@ -14,7 +14,6 @@ class SARSA(Agent):
 
     def __init__(self, policy, qfunction, learning_rate=0.1, discount_factor=1.0):
         super().__init__(policy)
-        self.policy = policy
         self.qfunction = qfunction
         self.learning_rate = learning_rate
         self.discount_factor = discount_factor

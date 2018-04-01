@@ -10,15 +10,12 @@ class EveryVisitMonteCarlo(Agent):
     Every-visit Monte Carlo
 
     # Arguments
-        action_space: action space of the environment.
         policy: behavior policy.
         vfunction: a state value function.
     """
 
-    def __init__(self, action_space, policy, vfunction):
+    def __init__(self, policy, vfunction):
         super().__init__(policy)
-        self.action_space = action_space
-        self.policy = policy
         self.vfunction = vfunction
         self.visited = []
         self.rewards = []

@@ -6,16 +6,14 @@ class QLearning(Agent):
     Tabular Q-learning.
 
     # Arguments
-        action_space: action space of the environment.
         policy: behavior policy.
         qfunction: a state-action value function.
         learning_rate: float >= 0.
         discount_factor: float >= 0.
     """
 
-    def __init__(self, action_space, policy, qfunction, learning_rate=0.1, discount_factor=1.0, max_value=True):
+    def __init__(self, policy, qfunction, learning_rate=0.1, discount_factor=1.0, max_value=True):
         super().__init__(policy)
-        self.action_space = action_space
         self.qfunction = qfunction
         self.learning_rate = learning_rate
         self.discount_factor = discount_factor
