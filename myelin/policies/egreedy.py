@@ -23,3 +23,6 @@ class EGreedy(Policy):
     def get_action(self, state):
         policy = self.rand_policy if self.random_state.rand() < self.epsilon else self.greedy_policy
         return policy.get_action(state)
+
+    def get_action_prob(self, state, action):
+        pass
