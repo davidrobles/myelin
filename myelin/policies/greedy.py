@@ -29,7 +29,7 @@ class Greedy(Policy):
         state_actions = [(state, action) for action in actions]
         _, best_action = max(state_actions, key=lambda state_action: self.qfunc[state_action])
         best_value = self.qfunc[state, best_action]
-        best_actions = [action for state, action in state_actions if self.qfunc[(state, action)] == best_value]
+        best_actions = [action for state, action in state_actions if self.qfunc[state, action] == best_value]
         if action not in best_actions:
             return 0
         return 1 / len(best_actions)
