@@ -1,7 +1,7 @@
-from abc import ABCMeta, abstractmethod
+from abc import ABC, abstractmethod
 
 
-class Policy(metaclass=ABCMeta):
+class Policy(ABC):
     """
     A policy is a mapping from perceived states of the environment
     to actions to be taken when in those states.

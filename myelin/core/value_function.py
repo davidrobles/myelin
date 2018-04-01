@@ -1,7 +1,7 @@
-from abc import ABCMeta, abstractmethod
+from abc import ABC, abstractmethod
 
 
-class ValueFunction(metaclass=ABCMeta):
+class ValueFunction(ABC):
 
     @abstractmethod
     def __getitem__(self, s_or_sa):

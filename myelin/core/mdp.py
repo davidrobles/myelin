@@ -1,7 +1,7 @@
-from abc import ABCMeta, abstractmethod
+from abc import ABC, abstractmethod
 
 
-class MDP(metaclass=ABCMeta):
+class MDP(ABC):
     """Markov Decision Process"""
 
     @abstractmethod
@@ -48,13 +48,13 @@ class MDP(metaclass=ABCMeta):
         """
 
 
-class MarkovGame(metaclass=ABCMeta):
+class MarkovGame(ABC):
     """Markov Game"""
 
 
-class AlternatingMarkovGame(metaclass=ABCMeta):
+class AlternatingMarkovGame(ABC):
     """Alternating Markov Game"""
 
 
-class POMPDP(metaclass=ABCMeta):
+class POMPDP(ABC):
     """Partially Observable Markov Decision Process"""
