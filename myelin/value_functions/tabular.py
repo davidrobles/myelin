@@ -1,9 +1,6 @@
 from myelin.core import ValueFunction
 from myelin.utils import check_random_state
 
-_MEAN = 0.0
-_STD = 0.3
-
 
 class TabularVF(ValueFunction):
     """
@@ -25,13 +22,15 @@ class TabularVF(ValueFunction):
         ```
     """
 
-    def __init__(self, init=True, random_state=None):
+    def __init__(self, init=True, mean=0.0, std=0.3, random_state=None):
         self.init = init
+        self.mean = mean
+        self.std = std
         self.random_state = check_random_state(random_state)
         self._table = {}
 
     def random_initializer(self):
-        return self.random_state.normal(_MEAN, _STD)
+        return self.random_state.normal(self.mean, self.std)
 
     def __setitem__(self, key, value):
         """
