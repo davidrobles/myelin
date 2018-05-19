@@ -41,3 +41,15 @@ class TestTabularVF(unittest.TestCase):
         vf.random_initializer = MagicMock(return_value=0.184)
         state, action = 1, 1
         self.assertEqual(vf[state, action], 0.184)
+
+    def test_discretizer_for_state_values(self):
+        import math
+        vf = TabularVF(discretizer=math.ceil, init=False)
+        state = 0.3
+        vf[state] = 5
+        discretized_state = 1
+        self.assertEqual(vf[discretized_state], 5)
+        state = 3.3
+        vf[state] = 10
+        discretized_state = 4
+        self.assertEqual(vf[discretized_state], 10)

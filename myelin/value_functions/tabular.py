@@ -22,7 +22,8 @@ class TabularVF(ValueFunction):
         ```
     """
 
-    def __init__(self, init=True, mean=0.0, std=0.3, random_state=None):
+    def __init__(self, discretizer=None, init=True, mean=0.0, std=0.3, random_state=None):
+        self.discretizer = discretizer or (lambda state: state)
         self.init = init
         self.mean = mean
         self.std = std
@@ -39,7 +40,7 @@ class TabularVF(ValueFunction):
             key: `state` or `(state, action)`.
             value: a scalar.
         """
-        self._table[key] = value
+        self._table[self.discretizer(key)] = value
 
     #################
     # ValueFunction #
@@ -53,6 +54,7 @@ class TabularVF(ValueFunction):
         # Returns
             a scalar value.
         """
+        key = self.discretizer(key)
         if key not in self._table:
             if self.init:
                 self._table[key] = self.random_initializer()
