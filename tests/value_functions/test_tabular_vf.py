@@ -25,8 +25,10 @@ class TestTabularVF(unittest.TestCase):
         state = 0.3
         vf[state] = 5
         discretized_state = 1
+        self.assertEqual(vf[state], 5)
         self.assertEqual(vf[discretized_state], 5)
         state = 3.3
         vf[state] = 10
         discretized_state = 4
+        self.assertEqual(vf[state], 10)
         self.assertEqual(vf[discretized_state], 10)

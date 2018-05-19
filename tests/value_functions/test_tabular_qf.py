@@ -36,8 +36,11 @@ class TestTabularQF(unittest.TestCase):
         state = 0.3
         action = 1
         qf[state, action] = 5
+        discretized_state = 1.0
         self.assertEqual(qf[state, action], 5)
+        self.assertEqual(qf[discretized_state, action], 5)
         state = 3.3
         action = 2
         qf[state, action] = 10
-        self.assertEqual(qf[state, action], 10)
+        discretized_state = 4.0
+        self.assertEqual(qf[discretized_state, action], 10)
