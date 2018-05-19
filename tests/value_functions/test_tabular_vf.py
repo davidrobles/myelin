@@ -12,12 +12,22 @@ class TestTabularVF(unittest.TestCase):
         self.vf[state] = 5
         self.assertEqual(self.vf[state], 5)
 
-    def test_should_return_zero_for_non_existent_state_values(self):
+    def test_zero_initialized_state_values(self):
         vf = TabularVF(init=False)
         state = 0
         self.assertEqual(vf[state], 0)
         state = 1
         self.assertEqual(vf[state], 0)
+
+    def test_randomly_initialized_state_values(self):
+        from unittest.mock import MagicMock
+        vf = TabularVF(init=True)
+        vf.random_initializer = MagicMock(return_value=0.837)
+        state = 0
+        self.assertEqual(vf[state], 0.837)
+        vf.random_initializer = MagicMock(return_value=0.184)
+        state = 1
+        self.assertEqual(vf[state], 0.184)
 
     def test_discretizer_for_state_values(self):
         import math
