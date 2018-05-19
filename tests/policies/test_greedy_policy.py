@@ -1,7 +1,7 @@
 import unittest
 
 from myelin.policies import Greedy
-from myelin.value_functions.tabular import TabularVF
+from myelin.value_functions.tabular_vf import TabularVF
 
 
 class TestGreedyPolicy(unittest.TestCase):
