@@ -7,11 +7,16 @@ class TestTabularVF(unittest.TestCase):
     def setUp(self):
         self.vf = TabularVF(init=False)
 
-    def test_save_and_retrieve(self):
+    def test_save_and_retrieve_state_values(self):
+        state = 1
+        self.vf[state] = 5
+        self.assertEqual(self.vf[state], 5)
+
+    def test_save_and_retrieve_state_action_values(self):
         state = 1
         action = 1
-        self.vf[state] = action
-        self.assertEqual(self.vf[state], action)
+        self.vf[state, action] = 10
+        self.assertEqual(self.vf[state, action], 10)
 
     def test_should_return_zero_for_non_existent_values(self):
         vf = TabularVF(init=False)
