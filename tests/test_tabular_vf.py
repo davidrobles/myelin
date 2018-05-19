@@ -36,6 +36,8 @@ class TestTabularVF(unittest.TestCase):
         from unittest.mock import MagicMock
         vf = TabularVF(init=True)
         vf.random_initializer = MagicMock(return_value=0.837)
-        self.assertEqual(vf[0], 0.837)
+        state, action = 0, 0
+        self.assertEqual(vf[state, action], 0.837)
         vf.random_initializer = MagicMock(return_value=0.184)
-        self.assertEqual(vf[1], 0.184)
+        state, action = 1, 1
+        self.assertEqual(vf[state, action], 0.184)
