@@ -5,3 +5,4 @@ __pycache__/
 experiments/
 .idea/
 .ipynb_checkpoints/
+.virtualenv/
