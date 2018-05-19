@@ -6,34 +6,33 @@ from myelin.utils import Experience
 
 import math
 
+from myelin.value_functions.tabular_qf import TabularQF
+
 
 def action_space(state):
     return [0, 1]
 
 
-class PoleBalancingQFunction:
-    def __init__(self):
-        self._table = {}
+def discretizer(state):
+    bucket_indice = []
+    for i in range(len(state)):
+        if state[i] <= STATE_BOUNDS[i][0]:
+            bucket_index = 0
+        elif state[i] >= STATE_BOUNDS[i][1]:
+            bucket_index = NUM_BUCKETS[i] - 1
+        else:
+            # Mapping the state bounds to the bucket array
+            bound_width = STATE_BOUNDS[i][1] - STATE_BOUNDS[i][0]
+            offset = (NUM_BUCKETS[i]-1)*STATE_BOUNDS[i][0]/bound_width
+            scaling = (NUM_BUCKETS[i]-1)/bound_width
+            bucket_index = int(round(scaling*state[i] - offset))
+        bucket_indice.append(bucket_index)
+    return tuple(bucket_indice)
 
-    def __setitem__(self, state_action, value):
-        # state, action = state_action
-        self._table[state_action] = value
-
-    def __getitem__(self, key):
-        # return self._table[state_action]
-        _MEAN = 0.0
-        _STD = 0.3
-
-        init = True
-        if key not in self._table:
-            if init:
-                self._table[key] = np.random.normal(_MEAN, _STD)
-            else:
-                self._table[key] = 0
-        return self._table[key]
+qfunction = TabularQF(discretizer)
 
 
-qfunction = PoleBalancingQFunction()
+# qfunction = PoleBalancingQFunction()
 
 # policy = RandomPolicy(action_space)
 policy = EGreedy(action_space, qfunction, epsilon=0.1)
@@ -55,21 +54,7 @@ STATE_BOUNDS[1] = [-0.5, 0.5]
 STATE_BOUNDS[3] = [-math.radians(50), math.radians(50)]
 
 
-def discretize(state):
-    bucket_indice = []
-    for i in range(len(state)):
-        if state[i] <= STATE_BOUNDS[i][0]:
-            bucket_index = 0
-        elif state[i] >= STATE_BOUNDS[i][1]:
-            bucket_index = NUM_BUCKETS[i] - 1
-        else:
-            # Mapping the state bounds to the bucket array
-            bound_width = STATE_BOUNDS[i][1] - STATE_BOUNDS[i][0]
-            offset = (NUM_BUCKETS[i]-1)*STATE_BOUNDS[i][0]/bound_width
-            scaling = (NUM_BUCKETS[i]-1)/bound_width
-            bucket_index = int(round(scaling*state[i] - offset))
-        bucket_indice.append(bucket_index)
-    return tuple(bucket_indice)
+
 
 
 def print_state(state):
@@ -91,12 +76,12 @@ for episode in range(1000):
     for step in range(1000):
         # print('Step: {}'.format(step))
         # d = discretize(state)
-        action = agent.get_action(discretize(state))
+        action = agent.get_action(state)
         next_state, reward, done, info = env.step(action)
         env.render()
         # print('Reward: {}'.format(reward))
         # print_state(next_state)
-        experience = Experience(discretize(state), action, reward, discretize(next_state), done)
+        experience = Experience(state, action, reward, next_state, done)
         agent.update(experience)
         if done:
             print('Steps: {}'.format(step))
