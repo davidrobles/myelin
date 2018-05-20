@@ -10,9 +10,9 @@ class Agent(Policy):
         self.policy = policy
         self.action_space = policy.action_space
 
-    @abstractmethod
     def update(self, experience):
         """An experience is a tuple (state, action, reward, next_state, done)"""
+        pass
 
     ##########
     # Policy #

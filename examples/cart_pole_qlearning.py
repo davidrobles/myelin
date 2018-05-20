@@ -2,12 +2,12 @@ import math
 
 import gym
 
-from myelin.agents import Dummy, QLearning
-from myelin.core import RLInteraction, GymEnvironment
+from myelin.agents import QLearning
+from myelin.core import RLInteraction, GymEnvironment, Agent
+from myelin.core.termination import MaxEpisodes, Convergence
 from myelin.policies import EGreedy, Greedy
 from myelin.utils import Callback
 from myelin.value_functions.tabular_qf import TabularQF
-from myelin.core.termination import MaxEpisodes, Convergence
 
 #################
 # Configuration #
@@ -104,7 +104,6 @@ rl_interaction.train()
 #################################
 
 
-
 class Monitor2(Callback):
     def on_step(self, step):
         gym_env.render()
@@ -115,7 +114,7 @@ env.reset()
 
 rl_interaction = RLInteraction(
     env=env,
-    agent=Dummy(greedy),
+    agent=Agent(greedy),
     callbacks=[Monitor2()]
 )
 
