@@ -3,7 +3,7 @@ import unittest
 from myelin.agents import QLearning
 from myelin.policies import RandomPolicy
 from myelin.utils import Experience
-from myelin.value_functions.tabular_qf import TabularQF
+from myelin.value_functions import TabularQF
 
 
 class TestQLearning(unittest.TestCase):

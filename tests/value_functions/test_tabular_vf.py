@@ -1,6 +1,6 @@
 import unittest
 
-from myelin.value_functions.tabular_vf import TabularVF
+from myelin.value_functions import TabularVF
 
 
 class TestTabularVF(unittest.TestCase):

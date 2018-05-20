@@ -1,6 +1,6 @@
 import unittest
 
-from myelin.value_functions.tabular_qf import TabularQF
+from myelin.value_functions import TabularQF
 
 
 class TestTabularQF(unittest.TestCase):
