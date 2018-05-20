@@ -9,6 +9,21 @@ from myelin.utils import Callback
 from myelin.value_functions.tabular_qf import TabularQF
 
 
+#################
+# Configuration #
+#################
+
+
+MAX_N_EPISODES = 1000
+EPSILON_DECAY = 0.0001
+LEARNING_RATE_DECAY = 0.0001
+
+
+################
+# Action Space #
+################
+
+
 def action_space(state):
     return [0, 1]
 
@@ -41,8 +56,9 @@ def discretizer(state):
 
 
 qfunction = TabularQF(discretizer=discretizer)
+egreedy = EGreedy(action_space, qfunction, epsilon=1.)
 agent = QLearning(
-    policy=EGreedy(action_space, qfunction, epsilon=0.1),
+    policy=egreedy,
     qfunction=qfunction,
     learning_rate=0.1,
     discount_factor=0.99
@@ -53,11 +69,16 @@ agent = QLearning(
 # Callbacks #
 #############
 
+
 class Monitor(Callback):
     def on_episode_end(self, episode, step):
         print('Episode: {}'.format(episode))
         print('Steps: {}'.format(step))
         print('-' * 100)
+        egreedy.epsilon = egreedy.epsilon * (1. / (1. + EPSILON_DECAY * episode))
+        print('Epsilon: {}'.format(egreedy.epsilon))
+        agent.learning_rate = agent.learning_rate * (1. / (1. + LEARNING_RATE_DECAY * episode))
+        print('Learning rate: {}'.format(agent.learning_rate))
 
 
 ##########################
@@ -65,7 +86,7 @@ class Monitor(Callback):
 ##########################
 
 def max_episodes(info):
-    return info['episode'] == 100
+    return info['episode'] == MAX_N_EPISODES
 
 
 #################################
