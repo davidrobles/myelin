@@ -49,6 +49,10 @@ agent = QLearning(
 )
 
 
+#############
+# Callbacks #
+#############
+
 class Monitor(Callback):
     def on_episode_end(self, episode, step):
         print('Episode: {}'.format(episode))
@@ -56,4 +60,23 @@ class Monitor(Callback):
         print('-' * 100)
 
 
-RLInteraction(env, agent, callbacks=[Monitor()]).train(1000)
+##########################
+# Termination conditions #
+##########################
+
+def max_episodes(info):
+    return info['episode'] == 100
+
+
+#################################
+# Agent-Environment Interaction #
+#################################
+
+rl_interaction = RLInteraction(
+    env=env,
+    agent=agent,
+    callbacks=[Monitor()],
+    termination_conditions=[max_episodes]
+)
+
+rl_interaction.train()
