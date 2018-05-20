@@ -22,6 +22,7 @@ class RLInteraction:
     def should_continue(self):
         for termination_condition in self.termination_conditions:
             if termination_condition(self.info):
+                print(termination_condition)
                 return False
         return True
 

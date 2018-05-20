@@ -85,8 +85,26 @@ class Monitor(Callback):
 # Termination conditions #
 ##########################
 
+
 def max_episodes(info):
     return info['episode'] == MAX_N_EPISODES
+
+
+class Convergence:
+    def __init__(self, n_episodes, n_steps):
+        self.n_episodes = n_episodes
+        self.n_steps = n_steps
+        self.count = 0
+
+    def __call__(self, info):
+        if info['step'] == self.n_steps:
+            self.count += 1
+        else:
+            self.count = 0
+        return self.count == self.n_episodes
+
+    def __str__(self):
+        return 'Converged after {} consecutive episodes reaching {} steps'.format(self.n_episodes, self.n_steps)
 
 
 #################################
@@ -97,7 +115,7 @@ rl_interaction = RLInteraction(
     env=env,
     agent=agent,
     callbacks=[Monitor()],
-    termination_conditions=[max_episodes]
+    termination_conditions=[max_episodes, Convergence(n_episodes=5, n_steps=200)]
 )
 
 rl_interaction.train()
