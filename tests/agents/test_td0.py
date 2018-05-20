@@ -97,8 +97,35 @@ class TestTD0(unittest.TestCase):
         experience = Experience(state, action, reward, next_state, done)
         self.td0.update(experience)
         self.assertEqual(self.vf[state], 0.19)
-        # step 2
+        # step 3
         reward = 1.0
         experience = Experience(state, action, reward, next_state, done)
         self.td0.update(experience)
         self.assertEqual(self.vf[state], 0.271)
+
+    def test_update_with_low_learning_rate_and_high_discount_factor_and_non_zero_next_state(self):
+        # settings
+        self.td0.learning_rate = 0.1
+        self.td0.discount_factor = 0.99
+        # experience
+        state = 1
+        action = 'north'
+        next_state = 2
+        done = False
+        # step 1
+        self.vf[state] = 0.0
+        self.vf[next_state] = 1.0
+        reward = 1.0
+        experience = Experience(state, action, reward, next_state, done)
+        self.td0.update(experience)
+        self.assertEqual(self.vf[state], 0.199)
+        # step 2
+        reward = 1.0
+        experience = Experience(state, action, reward, next_state, done)
+        self.td0.update(experience)
+        self.assertEqual(self.vf[state], 0.3781)
+        # # step 3
+        reward = 1.0
+        experience = Experience(state, action, reward, next_state, done)
+        self.td0.update(experience)
+        self.assertEqual(self.vf[state], 0.53929)
