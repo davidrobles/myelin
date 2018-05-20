@@ -9,10 +9,10 @@ class CallbackList:
         for callback in self.callbacks:
             callback.on_episode_begin(episode)
 
-    def on_episode_end(self, episode):
+    def on_episode_end(self, episode, step):
         """Called at the end of every episode."""
         for callback in self.callbacks:
-            callback.on_episode_end(episode)
+            callback.on_episode_end(episode, step)
 
     def on_train_begin(self):
         """Called at the beginning of model training."""
@@ -24,6 +24,11 @@ class CallbackList:
         for callback in self.callbacks:
             callback.on_train_end(episode)
 
+    def on_step(self, step):
+        """Called after every time step."""
+        for callback in self.callbacks:
+            callback.on_step(step)
+
 
 class Callback:
     """Abstract base class used to build new callbacks (inspired by Keras)."""
@@ -31,7 +36,7 @@ class Callback:
     def on_episode_begin(self, episodes):
         """Called at the beginning of every episode."""
 
-    def on_episode_end(self, episode):
+    def on_episode_end(self, episode, step):
         """Called at the end of every episode."""
 
     def on_train_begin(self):
@@ -39,3 +44,6 @@ class Callback:
 
     def on_train_end(self, episode):
         """Called at the end of the agent-environment interaction."""
+
+    def on_step(self, step):
+        """Called after every time step"""
