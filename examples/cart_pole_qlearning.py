@@ -81,7 +81,7 @@ class LearningMonitor(Callback):
         print('Learning rate: {}'.format(agent.learning_rate))
 
 
-rl_interaction = RLInteraction(
+RLInteraction(
     env=env,
     agent=agent,
     callbacks=[LearningMonitor()],
@@ -89,9 +89,7 @@ rl_interaction = RLInteraction(
         MaxEpisodes(n_episodes=1000),
         Convergence(n_episodes=5, n_steps=200)
     ]
-)
-
-rl_interaction.train()
+).start()
 
 
 ###########
@@ -110,13 +108,11 @@ class PerformanceMonitor(Callback):
 greedy = Greedy(action_space, qfunction)
 env.reset()
 
-rl_interaction = RLInteraction(
+RLInteraction(
     env=env,
     agent=Agent(greedy),
     callbacks=[PerformanceMonitor()],
     termination_conditions=[
         MaxEpisodes(n_episodes=10)
     ]
-)
-
-rl_interaction.train()
+).start()

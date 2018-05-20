@@ -29,8 +29,8 @@ class RLInteraction:
                 return False
         return True
 
-    def train(self):
-        """Trains the model for a fixed number of episodes."""
+    def start(self):
+        """Starts agent-environment interaction."""
         self.callbacks.on_train_begin()
         while self.should_continue():
             self.callbacks.on_episode_begin(self.episode)
