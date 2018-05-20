@@ -5,6 +5,11 @@ from myelin.utils import check_random_state
 
 
 class EGreedy(Policy):
+    """Epsilon Greedy policy.
+    # Arguments
+        qfunction: a state-action value function.
+        epsilon: float >= 0. Probability of choosing a random action.
+    """
 
     def __init__(self, action_space, qfunction, epsilon=0.1, random_state=None):
         if qfunction is None:
