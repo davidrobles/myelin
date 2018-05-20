@@ -7,7 +7,7 @@ from myelin.core import RLInteraction, GymEnvironment, Agent
 from myelin.core.termination import MaxEpisodes, Convergence
 from myelin.policies import EGreedy, Greedy
 from myelin.utils import Callback
-from myelin.value_functions.tabular_qf import TabularQF
+from myelin.value_functions import TabularQF
 
 #################
 # Configuration #
