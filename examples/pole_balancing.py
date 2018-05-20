@@ -28,18 +28,21 @@ def discretizer(state):
         else:
             # Mapping the state bounds to the bucket array
             bound_width = STATE_BOUNDS[i][1] - STATE_BOUNDS[i][0]
-            offset = (NUM_BUCKETS[i]-1)*STATE_BOUNDS[i][0]/bound_width
-            scaling = (NUM_BUCKETS[i]-1)/bound_width
-            bucket_index = int(round(scaling*state[i] - offset))
+            offset = (NUM_BUCKETS[i] - 1) * STATE_BOUNDS[i][0] / bound_width
+            scaling = (NUM_BUCKETS[i] - 1) / bound_width
+            bucket_index = int(round(scaling * state[i] - offset))
         bucket_indice.append(bucket_index)
     return tuple(bucket_indice)
 
 
 env = gym.make('CartPole-v0')
-qfunction = TabularQF(discretizer)
-policy = EGreedy(action_space, qfunction, epsilon=0.1)
-agent = QLearning(policy, qfunction, learning_rate=0.1, discount_factor=0.99)
-
+qfunction = TabularQF(discretizer=discretizer)
+agent = QLearning(
+    policy=EGreedy(action_space, qfunction, epsilon=0.1),
+    qfunction=qfunction,
+    learning_rate=0.1,
+    discount_factor=0.99
+)
 
 for episode in range(1000):
     print('Episode: {}'.format(episode))
