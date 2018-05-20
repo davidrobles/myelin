@@ -65,12 +65,12 @@ agent = QLearning(
 )
 
 
-#############
-# Callbacks #
-#############
+#########
+# Learn #
+#########
 
 
-class Monitor(Callback):
+class LearningMonitor(Callback):
     def on_episode_end(self, episode, step):
         print('Episode: {}'.format(episode))
         print('Steps: {}'.format(step))
@@ -81,15 +81,10 @@ class Monitor(Callback):
         print('Learning rate: {}'.format(agent.learning_rate))
 
 
-#################################
-# Agent-Environment Interaction #
-#################################
-
-
 rl_interaction = RLInteraction(
     env=env,
     agent=agent,
-    callbacks=[Monitor()],
+    callbacks=[LearningMonitor()],
     termination_conditions=[
         MaxEpisodes(n_episodes=1000),
         Convergence(n_episodes=5, n_steps=200)
@@ -99,12 +94,12 @@ rl_interaction = RLInteraction(
 rl_interaction.train()
 
 
-#################################
-# Agent-Environment Interaction #
-#################################
+###########
+# Perform #
+###########
 
 
-class Monitor2(Callback):
+class PerformanceMonitor(Callback):
     def on_step(self, step):
         gym_env.render()
 
@@ -118,7 +113,7 @@ env.reset()
 rl_interaction = RLInteraction(
     env=env,
     agent=Agent(greedy),
-    callbacks=[Monitor2()],
+    callbacks=[PerformanceMonitor()],
     termination_conditions=[
         MaxEpisodes(n_episodes=10)
     ]
