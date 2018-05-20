@@ -13,12 +13,18 @@ A Python Framework for Reinforcement Learning.
 
 ## Examples
 
+### GridWorld
+
+![Monte Carlo PI Demo](images/gridworld.png "Monte Carlo PI Demo")
+
 - [Grid World - TD0](https://github.com/davidrobles/myelin/blob/master/examples/grid_world_td0.ipynb)
 - [Grid World - QLearning](https://github.com/davidrobles/myelin/blob/master/examples/grid_world_qlearning.ipynb)
 - [Grid World - SARSA](https://github.com/davidrobles/myelin/blob/master/examples/grid_world_sarsa.ipynb)
 - [Grid World - ExpectedSARSA](https://github.com/davidrobles/myelin/blob/master/examples/grid_world_expected_sarsa.ipynb)
 - [Grid World - First-Visit Monte Carlo](https://github.com/davidrobles/myelin/blob/master/examples/grid_world_first_visit_monte_carlo.ipynb)
 - [Grid World - Every-Visit Monte Carlo](https://github.com/davidrobles/myelin/blob/master/examples/grid_world_every_visit_monte_carlo.ipynb)
+
+### Pole Balancing
 
 ## Why the name Myelin?
 
