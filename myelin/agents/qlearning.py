@@ -8,8 +8,13 @@ class QLearning(Agent):
     # Arguments
         policy: behavior policy.
         qfunction: a state-action value function.
-        learning_rate: float >= 0.
-        discount_factor: float >= 0.
+        learning_rate: float >= 0. Determines to what extent newly acquired information overrides old information. A
+            factor of 0 makes the agent learn nothing (exclusively exploiting prior knowledge), while a factor of 1
+            makes the agent consider only the most recent information (ignoring prior knowledge to explore
+            possibilities).
+        discount_factor: float >= 0. Determines the importance of future rewards. A factor of 0 will make the agent
+            "myopic" (or short-sighted) by only considering current rewards, while a factor approaching 1 will make it
+            strive for a long-term high reward.
     """
 
     def __init__(self, policy, qfunction, learning_rate=0.1, discount_factor=1.0, max_value=True):
