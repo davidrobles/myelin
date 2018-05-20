@@ -115,7 +115,10 @@ env.reset()
 rl_interaction = RLInteraction(
     env=env,
     agent=Agent(greedy),
-    callbacks=[Monitor2()]
+    callbacks=[Monitor2()],
+    termination_conditions=[
+        MaxEpisodes(n_episodes=10)
+    ]
 )
 
 rl_interaction.train()
