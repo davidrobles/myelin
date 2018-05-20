@@ -8,7 +8,10 @@ class RLInteraction:
         self.env = env
         self.agent = agent
         self.callbacks = CallbackList(callbacks)
-        self.termination_conditions = termination_conditions
+        if termination_conditions is None:
+            self.termination_conditions = [lambda a: False]
+        else:
+            self.termination_conditions = termination_conditions
         self.episode = 0
         self.step = 0
 
