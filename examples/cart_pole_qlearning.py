@@ -108,6 +108,9 @@ class Monitor2(Callback):
     def on_step(self, step):
         gym_env.render()
 
+    def on_episode_end(self, episode, step):
+        print('Steps: {}'.format(step))
+
 
 greedy = Greedy(action_space, qfunction)
 env.reset()

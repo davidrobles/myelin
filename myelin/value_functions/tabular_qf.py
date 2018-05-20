@@ -1,3 +1,4 @@
+from myelin import initializers
 from myelin.core import ValueFunction
 from myelin.utils import check_random_state
 
@@ -6,21 +7,14 @@ class TabularQF(ValueFunction):
     """
     Tabular Q-Function for q(s, a) values.
     # Arguments
-        init: boolean. Whether to return a randomly initialized value
-            when accessed and does not exist in the table.
-        ```
+        initializer: used to lazy initialize non-existent Q-values.
     """
 
-    def __init__(self, discretizer=None, init=True, mean=0.0, std=0.3, random_state=None):
+    def __init__(self, initializer='zeros', discretizer=None, random_state=None):
+        self.initializer = initializers.get(initializer)
         self.discretizer = discretizer or (lambda state: state)
-        self.init = init
-        self.mean = mean
-        self.std = std
         self.random_state = check_random_state(random_state)
         self._table = {}
-
-    def random_initializer(self):
-        return self.random_state.normal(self.mean, self.std)
 
     def __setitem__(self, key, value):
         """
@@ -48,8 +42,5 @@ class TabularQF(ValueFunction):
         state, action = key
         state_action = self.discretizer(state), action
         if state_action not in self._table:
-            if self.init:
-                self._table[state_action] = self.random_initializer()
-            else:
-                self._table[state_action] = 0
+            self._table[state_action] = self.initializer()
         return self._table[state_action]
