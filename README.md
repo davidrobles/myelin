@@ -26,9 +26,15 @@ A Python Framework for Reinforcement Learning.
 
 ### Pole Balancing
 
-![Monte Carlo PI Demo](images/cart-pole.png "Cart-Pole Balancing")
+![Cart-Pole Balancing](images/cart-pole.png "Cart-Pole Balancing")
 
 - [Cart-Pole - Q-learning](https://github.com/davidrobles/myelin/blob/master/examples/cart_pole_qlearning.py)
+
+### Mountain Car
+
+![Mountain Car](images/mountain-car.png "Mountain Car")
+
+- [Mountain Car - Q-learning](https://github.com/davidrobles/myelin/blob/master/examples/mountain_car_qlearning.py)
 
 ## Why the name Myelin?
 
