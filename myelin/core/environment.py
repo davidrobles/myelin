@@ -17,10 +17,10 @@ class Environment(ABC):
         """Returns the current state."""
 
     @abstractmethod
-    def do_action(self, action):
+    def step(self, action):
         """
         Performs the given action in the current state.
-        Returns (reward, next_state).
+        Returns (next_state, reward, done, info).
         """
 
     @abstractmethod

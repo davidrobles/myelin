@@ -21,11 +21,11 @@ class GymEnvironment(Environment):
     def get_state(self):
         return self.state
 
-    def do_action(self, action):
+    def step(self, action):
         next_state, reward, done, info = self.gym_env.step(action)
         self.state = next_state
         self.done = done
-        return reward, next_state
+        return next_state, reward, done, info
 
     def is_terminal(self):
         return self.done
