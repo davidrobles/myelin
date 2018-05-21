@@ -11,7 +11,7 @@ from myelin.value_functions import TabularQF
 # Configuration #
 #################
 
-MAX_N_EPISODES = 1000
+MAX_N_EPISODES = 15000
 
 INITIAL_EPSILON = 1.0
 MIN_EPSILON = 0.01

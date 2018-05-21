@@ -1,3 +1,5 @@
+import numpy as np
+
 from .environment import Environment
 
 
@@ -13,8 +15,8 @@ class GymEnvironment(Environment):
     #     pass
 
     def get_actions(self, state):
-        # TODO fix this
-        return [0, 1, 2]
+        n_actions = self.gym_env.action_space.n
+        return list(np.arange(n_actions))
 
     def get_state(self):
         return self.state
