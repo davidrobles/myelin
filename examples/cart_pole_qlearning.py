@@ -98,7 +98,7 @@ RLInteraction(
 
 
 class PerformanceMonitor(Callback):
-    def on_step(self, step):
+    def on_step_end(self, step):
         gym_env.render()
 
     def on_episode_end(self, episode, step):

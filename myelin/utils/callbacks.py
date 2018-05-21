@@ -14,20 +14,25 @@ class CallbackList:
         for callback in self.callbacks:
             callback.on_episode_end(episode, step)
 
-    def on_train_begin(self):
-        """Called at the beginning of model training."""
+    def on_interaction_begin(self):
+        """Called at the beginning of the agent-environment interaction."""
         for callback in self.callbacks:
-            callback.on_train_begin()
+            callback.on_interaction_begin()
 
-    def on_train_end(self, episode):
-        """Called at the end of model training."""
+    def on_interaction_end(self, episode):
+        """Called at the end of the agent-environment interaction."""
         for callback in self.callbacks:
-            callback.on_train_end(episode)
+            callback.on_interaction_end(episode)
 
-    def on_step(self, step):
-        """Called after every time step."""
+    def on_step_begin(self, step):
+        """Called at the beginning of every step."""
         for callback in self.callbacks:
-            callback.on_step(step)
+            callback.on_step_begin(step)
+
+    def on_step_end(self, step):
+        """Called at the end of every step."""
+        for callback in self.callbacks:
+            callback.on_step_end(step)
 
 
 class Callback:
@@ -39,11 +44,14 @@ class Callback:
     def on_episode_end(self, episode, step):
         """Called at the end of every episode."""
 
-    def on_train_begin(self):
+    def on_interaction_begin(self):
         """Called at the beginning of the agent-environment interaction."""
 
-    def on_train_end(self, episode):
+    def on_interaction_end(self, episode):
         """Called at the end of the agent-environment interaction."""
 
-    def on_step(self, step):
-        """Called after every time step"""
+    def on_step_begin(self, step):
+        """Called at the beginning of every step."""
+
+    def on_step_end(self, step):
+        """Called at the end of every step."""
