@@ -4,7 +4,7 @@ from .environment import Environment
 
 
 class GymEnvironment(Environment):
-
+    """A wrapper for an Open AI Gym environment to interact with Myelin."""
     def __init__(self, gym_env):
         self.gym_env = gym_env
         self.state = self.gym_env.reset()
