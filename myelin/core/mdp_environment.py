@@ -20,25 +20,18 @@ class MDPEnvironment(Environment):
     ###############
 
     def get_actions(self, state):
-        """Returns the available actions in the given state."""
         return self._mdp.get_actions(state)
 
     def get_state(self):
-        """Returns the current state."""
         return self._cur_state
 
-    def do_action(self, action):
-        """
-        Performs the given action in the current state.
-        Returns (reward, next_state).
-        """
+    def step(self, action):
         prev = self.get_state()
         transitions = self._mdp.get_transitions(self.get_state(), action)
         for next_state, prob in transitions:
             self._cur_state = next_state
         reward = self._mdp.get_reward(prev, action, self.get_state())
-        return reward, self.get_state()
+        return self.get_state(), reward, self.is_terminal(), {}
 
     def reset(self):
-        """Resets the current state to the start state."""
         self._cur_state = self._mdp.get_start_state()
