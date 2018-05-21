@@ -14,7 +14,7 @@ class GymEnvironment(Environment):
 
     def get_actions(self, state):
         # TODO fix this
-        return [0, 1]
+        return [0, 1, 2]
 
     def get_state(self):
         return self.state
