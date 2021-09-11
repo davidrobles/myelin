@@ -1,15 +1,15 @@
 
 class ValueIterationCallback:
-    def on_learning_begin(self):
+    def on_learning_begin(self, vf):
         """Called at the beginning of learning process."""
 
-    def on_learning_end(self):
+    def on_learning_end(self, vf):
         """Called at the end of learning process."""
 
-    def on_iteration_begin(self):
+    def on_iteration_begin(self, vf):
         """Called at the beginning of every iteration (sweep)."""
 
-    def on_iteration_end(self,):
+    def on_iteration_end(self, vf):
         """Called at the end of every iteration (sweep)."""
 
 
@@ -17,21 +17,21 @@ class ValueIterationCallbackList:
     def __init__(self, callbacks=None):
         self.callbacks = callbacks or []
 
-    def on_learning_begin(self):
+    def on_learning_begin(self, vf):
         for callback in self.callbacks:
-            callback.on_learning_begin()
+            callback.on_learning_begin(vf)
 
-    def on_learning_end(self):
+    def on_learning_end(self, vf):
         for callback in self.callbacks:
-            callback.on_learning_end()
+            callback.on_learning_end(vf)
 
-    def on_iteration_begin(self):
+    def on_iteration_begin(self, vf):
         for callback in self.callbacks:
-            callback.on_iteration_begin()
+            callback.on_iteration_begin(vf)
 
-    def on_iteration_end(self):
+    def on_iteration_end(self, vf):
         for callback in self.callbacks:
-            callback.on_iteration_end()
+            callback.on_iteration_end(vf)
 
 
 class ValueIteration:
@@ -68,10 +68,10 @@ class ValueIteration:
 
     def learn(self):
         delta = 1000000
-        self.callbacks.on_learning_begin()
+        self.callbacks.on_learning_begin(self.vf)
         while delta >= self.theta:
-            self.callbacks.on_iteration_begin()
+            self.callbacks.on_iteration_begin(self.vf)
             delta = self.iteration()
-            print('Delta: %.4f' % (delta))
-            self.callbacks.on_iteration_end()
-        self.callbacks.on_learning_end()
+            print('Delta: %.4f' % delta)
+            self.callbacks.on_iteration_end(self.vf)
+        self.callbacks.on_learning_end(self.vf)
