@@ -1,5 +1,11 @@
 
 class ValueIterationCallback:
+    def on_learning_begin(self):
+        """Called at the beginning of learning process."""
+
+    def on_learning_end(self):
+        """Called at the end of learning process."""
+
     def on_iteration_begin(self):
         """Called at the beginning of every iteration (sweep)."""
 
@@ -10,6 +16,14 @@ class ValueIterationCallback:
 class ValueIterationCallbackList:
     def __init__(self, callbacks=None):
         self.callbacks = callbacks or []
+
+    def on_learning_begin(self):
+        for callback in self.callbacks:
+            callback.on_learning_begin()
+
+    def on_learning_end(self):
+        for callback in self.callbacks:
+            callback.on_learning_end()
 
     def on_iteration_begin(self):
         for callback in self.callbacks:
@@ -53,11 +67,11 @@ class ValueIteration:
         return delta
 
     def learn(self):
-        print('Value Iteration started...')
         delta = 1000000
+        self.callbacks.on_learning_begin()
         while delta >= self.theta:
             self.callbacks.on_iteration_begin()
             delta = self.iteration()
             print('Delta: %.4f' % (delta))
             self.callbacks.on_iteration_end()
-        print('DP Value Iteration finished!')
+        self.callbacks.on_learning_end()
