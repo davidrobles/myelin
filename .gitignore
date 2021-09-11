@@ -6,3 +6,4 @@ experiments/
 .idea/
 .ipynb_checkpoints/
 .virtualenv/
+.DS_Store
