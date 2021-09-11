@@ -8,7 +8,7 @@ from myelin.value_functions import TabularQF
 
 class TestQLearning(unittest.TestCase):
     def setUp(self):
-        self.qf = TabularQF(init=False)
+        self.qf = TabularQF()
         self.policy = RandomPolicy(lambda s: ['north'])
         self.learning_rate = 1.0
         self.discount_factor = 1.0

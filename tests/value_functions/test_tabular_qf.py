@@ -5,7 +5,7 @@ from myelin.value_functions import TabularQF
 
 class TestTabularQF(unittest.TestCase):
     def setUp(self):
-        self.qf = TabularQF(init=True)
+        self.qf = TabularQF()
 
     def test_save_and_retrieve_state_action_values(self):
         state = 1
@@ -14,7 +14,7 @@ class TestTabularQF(unittest.TestCase):
         self.assertEqual(self.qf[state, action], 10)
 
     def test_should_return_zero_for_non_existent_action_values(self):
-        qf = TabularQF(init=False)
+        qf = TabularQF()
         state, action = 0, 0
         self.assertEqual(qf[state, action], 0)
         state, action = 1, 1
@@ -22,7 +22,7 @@ class TestTabularQF(unittest.TestCase):
 
     def test_should_return_randomly_initialized_values_for_non_existent_values(self):
         from unittest.mock import MagicMock
-        qf = TabularQF(init=True)
+        qf = TabularQF()
         qf.random_initializer = MagicMock(return_value=0.837)
         state, action = 0, 0
         self.assertEqual(qf[state, action], 0.837)
@@ -32,7 +32,7 @@ class TestTabularQF(unittest.TestCase):
 
     def test_discretizer_for_state_action_values(self):
         import math
-        qf = TabularQF(discretizer=math.ceil, init=False)
+        qf = TabularQF(discretizer=math.ceil)
         state = 0.3
         action = 1
         qf[state, action] = 5

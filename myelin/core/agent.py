@@ -1,4 +1,5 @@
 from .policy import Policy
+from ..utils import Experience
 
 
 class Agent(Policy):
@@ -8,7 +9,7 @@ class Agent(Policy):
         self.policy = policy
         self.action_space = policy.action_space
 
-    def update(self, experience):
+    def update(self, experience: Experience):
         """An experience is a tuple (state, action, reward, next_state, done)"""
         pass
 
