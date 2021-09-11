@@ -47,6 +47,7 @@ class ValueIteration:
         self.vf = vfunction
         self.callbacks = ValueIterationCallbackList(callbacks)
         self.delta = 1000000
+        self.n_iter = 0
 
     def get_data(self):
         return {
@@ -54,7 +55,8 @@ class ValueIteration:
             'theta': self.theta,
             'gamma': self.gamma,
             'vf': self.vf,
-            'delta': self.delta
+            'delta': self.delta,
+            'n_iter': self.n_iter
         }
 
     def iteration(self):
@@ -82,4 +84,5 @@ class ValueIteration:
             self.callbacks.on_iteration_begin(self.get_data())
             self.delta = self.iteration()
             self.callbacks.on_iteration_end(self.get_data())
+            self.n_iter += 1
         self.callbacks.on_learning_end(self.get_data())
