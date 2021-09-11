@@ -17,21 +17,21 @@ class ValueIterationCallbackList:
     def __init__(self, callbacks=None):
         self.callbacks = callbacks or []
 
-    def on_learning_begin(self, vf):
+    def on_learning_begin(self, data):
         for callback in self.callbacks:
-            callback.on_learning_begin(vf)
+            callback.on_learning_begin(data)
 
-    def on_learning_end(self, vf):
+    def on_learning_end(self, data):
         for callback in self.callbacks:
-            callback.on_learning_end(vf)
+            callback.on_learning_end(data)
 
-    def on_iteration_begin(self, vf):
+    def on_iteration_begin(self, data):
         for callback in self.callbacks:
-            callback.on_iteration_begin(vf)
+            callback.on_iteration_begin(data)
 
-    def on_iteration_end(self, vf):
+    def on_iteration_end(self, data):
         for callback in self.callbacks:
-            callback.on_iteration_end(vf)
+            callback.on_iteration_end(data)
 
 
 class ValueIteration:
@@ -46,6 +46,16 @@ class ValueIteration:
         self.gamma = gamma
         self.vf = vfunction
         self.callbacks = ValueIterationCallbackList(callbacks)
+        self.delta = 1000000
+
+    def get_data(self):
+        return {
+            'mdp': self.mdp,
+            'theta': self.theta,
+            'gamma': self.gamma,
+            'vf': self.vf,
+            'delta': self.delta
+        }
 
     def iteration(self):
         delta = 0.0
@@ -67,11 +77,9 @@ class ValueIteration:
         return delta
 
     def learn(self):
-        delta = 1000000
-        self.callbacks.on_learning_begin(self.vf)
-        while delta >= self.theta:
-            self.callbacks.on_iteration_begin(self.vf)
-            delta = self.iteration()
-            print('Delta: %.4f' % delta)
-            self.callbacks.on_iteration_end(self.vf)
-        self.callbacks.on_learning_end(self.vf)
+        self.callbacks.on_learning_begin(self.get_data())
+        while self.delta >= self.theta:
+            self.callbacks.on_iteration_begin(self.get_data())
+            self.delta = self.iteration()
+            self.callbacks.on_iteration_end(self.get_data())
+        self.callbacks.on_learning_end(self.get_data())
